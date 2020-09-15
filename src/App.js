@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
-import CondicionalSecction from './sections/conditional'
+//import CondicionalSecction from './sections/conditional'
 import logo from './logo.svg';
 import './App.css';
-
+import cars from './assets/cars.json'
 
 /*class ComponenteTest extends Component{
   constructor(){
@@ -37,17 +37,40 @@ class ComponenteDos extends  Component{
   }
 }*/
 
+class CarItem extends Component{
+  render(){
+    const {car,id}=this.props;
+  
+  return(    
+      <li >
+        <p>key: {id}</p>
+        <p><strong>NOMBRE:</strong>{car.name}</p>
+        <p><strong>MARCA:</strong>{car.company}</p>
+      </li>
+    
+  )
+}
+}
+
 function App() {
   return (
+   <div>
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" /> 
-        
-        <CondicionalSecction></CondicionalSecction>
+        <img src={logo} className="App-logo" alt="logo" />                
       </header>
-      
     </div>
-    
+
+    <div>
+      <ul>
+        {cars.map(car=>{
+         return <CarItem  id={car.id} key={car.id} car={car}/>
+        })
+      }
+      </ul>
+    </div>
+
+    </div> 
   );
 }
 
